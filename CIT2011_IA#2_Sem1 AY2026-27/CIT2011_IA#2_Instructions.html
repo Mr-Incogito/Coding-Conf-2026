@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CIT2011 - Web Programming IA#2 - Coding Conf</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #1a1a3a;
+      }
+      h1 {
+        border-bottom: 3px solid #6200ea;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      h2 {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+      .meta-info {
+        background-color: #1a1a3a;
+        color: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 25px;
+      }
+      .meta-info p {
+        margin: 5px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        background-color: white;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background-color: #f2f2f2;
+        color: #1a1a3a;
+      }
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .code-block {
+        background-color: #272822;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IA#2: Dynamic Event Registration System ("Coding Conf")</h1>
+
+    <div class="meta-info">
+      <p><strong>Course Title:</strong> CIT2011 - Web Programming</p>
+      <p><strong>Assignment Due Date:</strong> Week 9</p>
+      <p>
+        <strong>Technologies Required:</strong> HTML5, CSS3, Native JavaScript
+        (ES6+)
+      </p>
+    </div>
+    <h4>Get IA#2 resources: <a href=""></a></h4>
+    <h2>1. Overview &amp; Scenario</h2>
+    <p>
+      In this lab, you will act as a front-end developer building a responsive,
+      multi-page client-side registration system for a fictitious tech
+      conference called <strong>"Coding Conf"</strong>. The workflow moves a
+      user from discovering event details to filling out a form, which
+      dynamically outputs a stylized, customized digital ticket.
+    </p>
+    <p><strong>Responsive Design</strong>:
+    <ul>
+        <li>Users may be on phones, tablets, laptops, desktops or large displays. Design content first; avoid assuming a single fixed screen width.</li>
+        <li>Use flexible layouts with Flexbox/Grid, relative units and responsive media.</li>
+        <li>Use Position, and Float properties.</li>
+        <li>Include fluid typography</li>
+        <li>CSS custom properties</li>
+        <li>Test at multiple viewport sizes using DevTools'responsive mode. Include screenshots of test results</li>
+        <li>Can a user read, tap, navigate and complete the task comfortably?</li>
+    </ul></p>
+<p><strong>Accessibility</strong>:                      
+    <ul>
+        <li>Accessible sites are designed so people with disabilities can interact meaningfully with the interface.</li>
+        <li>Use semantic HTML before reaching for ARIA: headings, nav, main, buttons, labels and lists communicate structure.</li>
+        <li>Ensure keyboard access, visible focus, readable contrast, useful alternative text and understandable forms.</li>
+        <li>Accessibility is not a “final check”; it should influence HTML, CSS, JavaScript and design decisions from the start.</li>
+    </ul></p>
+    <p><strong>Modern Selector Tools</strong>:
+        <ul><li>For example, :is(), :where(), :not() and :has() can reduce repetitive selectors.
+        </li> </ul>      
+    </p>
+
+    <p>
+      You must implement this project using <strong>ONLY</strong> the features and data provided in the Week 1 - Week 6 material from the CIT2011 module.
+    
+      Strictly using semantic
+      <strong>HTML5</strong>, custom
+      <strong>CSS3 layouts</strong> (Flexbox/Grid), and
+      <strong>Vanilla JavaScript</strong> for form parsing, form checking,
+      client-side persistence, and rendering logic.
+    </p>
+
+    <h2>2. System Architecture &amp; Workflow Requirements</h2>
+    <p>
+      Your web application directory must encompass three independent view
+      states or pages:
+    </p>
+    <ol>
+      <li>
+        <strong>Landing Page (<code>index.html</code>):</strong> A promotional
+        launch page containing event headers, schedule metadata (Date: October
+        26, 2026; Location: Papine, Kgn), structural descriptions, and an
+        actionable "Register Now" link or button leading to the form page. 
+      </li>
+      <li>
+        <strong>Registration / Login Page (<code>login.html</code>):</strong>
+        Contains the secure client form gathering user fields. It must process
+        user inputs and handle client-side validations locally before advancing. 
+      </li>
+      <li>
+        <strong>Ticket Confirmation Page (<code>ticket.html</code>):</strong>
+        The final visual state displaying a dynamic dashboard containing a
+        success confirmation text element alongside an advanced,
+        glassmorphism-themed conference ticket populated by user parameters. 
+      </li>
+    </ol>
+    <p> <strong>Deductions</strong> (Up to 5 marks per violation) for poor code formatting, chaotic indentations, missing documentation comments, 
+        unreferenced dead code loops, or copy-paste architecture omissions, broken links, missing accessibility features, etc.</p>
+
+    <h2>3. Technical &amp; Engineering Specifications</h2>
+
+    <h3>A. Structural &amp; Layout Integrity (HTML5 &amp; CSS3)</h3>
+    <ul>
+      <li>
+        <strong>Semantic Architecture:</strong> Build pages using clear layout
+        components (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+        <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+        <code>&lt;footer&gt;</code>).
+      </li>
+      <li>
+        <strong>Aesthetic Themes &amp; Effects:</strong> Mimic a futuristic
+        style leveraging dark purple space backgrounds, vibrant typography
+        gradients, and custom modern visual rules. Do not link utility style
+        packages or web frameworks (e.g., Tailwind CSS, Bootstrap).
+      </li>
+      <li>
+        <strong>Ticket Visual Matching:</strong> The template on
+        <code>ticket.html</code> must accurately lay out:
+        <ul>
+          <li>
+            The master banner confirming standard textual messages ("Congrats,
+            [Name]! Your ticket is ready.").
+          </li>
+          <li>
+            A premium ticket badge implementing glassmorphism characteristics
+            (semi-transparent blurred backdrops, fine white bounds).
+          </li>
+          <li>
+            Strategic arrangements showing full details: the matching "Coding
+            Conf" branded title icon, specific metadata strings, a serial string
+            tracker (e.g., <code>#01609</code>), the custom image profile
+            picture, the parsed name string, and an accompanying GitHub profile
+            link.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>B. Dynamic Logic &amp; Form Engineering (JavaScript)</h3> 
+    <ul>
+      <li>
+        <strong>State Persistence:</strong> Transfer verified properties across
+        execution windows seamlessly via standard browser interfaces like
+        <code>localStorage</code> or <code>sessionStorage</code>.
+      </li>
+      <li>
+        <strong>Form Checking Controls:</strong> Intercept form submissions
+        inside <code>login.html</code> using event handlers. Programmatic rules
+        must execute clean, contextual error labels to the DOM if criteria fail:
+        <ul>
+          <li>
+            <strong>Full Name:</strong> Required field, cannot consist of empty
+            spaces.
+          </li>
+          <li>
+            <strong>Email ID:</strong> Enforce strict structure checks matching
+            explicit string regular expressions (<code>user@domain.com</code>).
+          </li>
+          <li>
+            <strong>GitHub User Tag:</strong> Enforce a standard user handle
+            requirement beginning with the explicit <code>@</code> prefix.
+          </li>
+          <li>
+            <strong>Avatar Graphic Upload:</strong> Validate presence and
+            enforce system constraints validating explicit image types
+            (JPEG/PNG) and size constraints (e.g., beneath 500KB).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Dynamic DOM Mutation:</strong> During execution of
+        <code>ticket.html</code>, query stored properties locally to populate
+        your target elements dynamically. Implement boundary code blocks: if
+        direct route manipulation is attempted without state data present,
+        immediately trigger client routing redirections forwarding the visitor
+        back to <code>index.html</code>.
+      </li>
+    </ul>
+
+    <h2>4. Suggested Implementation Roadmap</h2>
+    <ul>
+      <li>
+        <strong>Architecture &amp; Stylesheets:</strong> Focus on
+        component design. Wireframe and assemble structural markup templates
+        across all views. Craft theme rules, asset containers, grid structures,
+        responsive breakpoints, and glass design features.
+      </li> 
+      <li>
+        <strong>Business Logic &amp; Form Validation:</strong> Focus on
+        dynamic behaviors. Code form handlers, pattern filters, and validation
+        rules. Setup persistence keys and read states securely during
+        initialization of the ticket dashboard. Debug file parsers and complete
+        rigorous execution tests. 
+      </li>
+    </ul>
+
+    <h2>5. Project Submission Deliverables</h2>
+    <p>
+      Compress your project workspace root inside a zipped archive structured as
+      <code>IDNo_LastName_FirstName_IA#2zip</code>. The output tree must strictly
+      mimic:
+    </p>
+    <div class="code-block">
+      ├── HTML <br>&nbsp;└── index.html <br>&nbsp;└──  login.html <br>&nbsp;└──  ticket.html <br>├── css/ <br>&nbsp;└── style.css <br>├──
+      js/ │ <br>&nbsp;├── validation.js <br>&nbsp;└── ticket.js <br>├── assets/ <br>&nbsp;└── [Branding icons,
+      imagery assets, background vectors]
+    </div>
+
+    <h2>6. Evaluation &amp; Grading Rubric (35 Marks Total)</h2>
+    <ol>
+        <strong><li> Page Architecture & Deliverables</li></strong>
+        <ul>
+            <li>Evaluates the presence, functional navigation workflow, and completeness of the three view states.</li>
+            <li>Landing Page (index.html) Layout: Features proper event headers, correct metadata strings (Date: October 26, 2026; Location: Papine, Kgn), structural overview text, and an active "Register Now" action node linking directly to the login state.
+            </li>
+            <li>Registration Form Page (login.html): Securely displays a complete form capturing user fields (Full Name, Email, GitHub, Avatar Upload) with structural input containers, labels, and an intercepted submit event.
+            </li>
+            <li>Ticket Confirmation View (ticket.html) Layout: Confirms standard textual messaging structures ("Congrats, [Name]! Your ticket is ready."), wraps elements cleanly inside an explicit glassmorphism container, and includes placeholders for logo, metadata, name, avatar, and GitHub handle.
+            </li>
+            <li>PDF document that includes wireframe, student details, assignment details, screenshots, sample login details, link to github, 
+                free hosting link, etc. </li>
+        </ul>	
+    </ol>
+    <table>
+        <ol start="2">
+        
+        <strong><li>Technical Layout & CSS Style Engineering (40 marks Total)</li></strong>
+        <ul>
+            <li>Evaluates semantic structural entegrity, design aesthetics, responsive design, accessibility engineering, and advanced selector utilization.
+            <li>Solution must <font color = "blue"> <strong>ONLY</strong> incorporate features and codes that were delivered for the CIT2011 Module</font>  for semester 1 academic year 2026-2027</li>
+            <li><font color="red">Excessive Ai usage will result in deduction of 50% of total overall grade.</font> </li>
+            <li><p> <font color="blue">Creativity </font> - usuage of transitions, animations, visual appeal, inclusion of useful and practical 
+                components that enhance the functionality of the final product. : <strong>(5 marks)</strong></p></li> 
+        </li>
+        </ul>
+    </ol><thead>
+        <tr>
+          <th>Category</th>
+          <th>Excellent (Full Marks)</th>
+          <th>Proficient (Minor Issues)</th>
+          <th>Developing (Partial Effort)</th>
+          <th>Unacceptable / Missing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>HTML5 Structure &amp; Semantics</strong><br /><em
+              >(5 Points)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Exemplary organization. Meaningful structural elements 
+            <code><i>(header, nav, main, section, footer)</i></code> are used comprehensively across all states. 
+            Meaningful form components, labels, and attributes.
+            Markup passes strict layout parsing cleanly.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Clean architecture overall, but reveals minor 
+            semantic omissions or excessive general <code><i>div</i></code> wrappers where specific structural layout tags apply.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Layout shows weak semantic awareness. 
+            Elements fall back heavily onto generic structure dividers without a structured taxonomy.
+          </td>
+          <td>
+            <strong>1-0 marks:</strong> Code fails standard syntax parsing, layout structure is completely broken, 
+            or core files are missing from the workspace root.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Responsive Design Implementation</strong><br/><em>(5 Marks)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Stellar responsive engineering across mobile, tablet, and desktop. Fluid typography, 
+            CSS custom properties, and flexible grids/flexbox work cleanly. DevTools testing screenshots are included.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Responsive layouts work, but minor scaling quirks exist on narrow display viewports or 
+            typography sizes scale disproportionately.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Relies heavily on fixed layout dimensions. Fails to implement CSS custom properties or 
+            fluid layouts smoothly across devices.
+          </td>
+          <td>
+            <strong>1-0 marks:</strong> Content is completely clipped or unreadable on mobile devices. No media queries, fluid properties, 
+            or layout scaling present.
+          </td>
+        </tr>
+         <tr>
+          <td>
+            <strong>Accessibility Compliance</strong><br/><em>(5 Marks)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Explicit keyboard access, distinct visible focus styling, rich contrast ratios, alternative text (alt), 
+            and structural form labels are completely integrated.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Strong semantic accessibility but exhibits minor gaps, such as missing form label 
+            connections or suboptimal icon description strings.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Minimal accessibility consideration. Relies strictly on default browser interactions 
+            with un-labeled inputs or missing image alternative texts.
+          </td>
+          <td>
+            <strong>1-0 marks:</strong> Zero color contrast awareness, missing focus targets, or form inputs cannot be read by screen readers.
+          </td>
+        </tr>
+        <tr>
+            </tr>
+         <tr>
+          <td>
+            <strong>Modern Selector Tools</strong><br/><em>(5 Marks)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Demonstrates direct structural utilization of modern functional pseudo-classes (e.g., :is(), :where(), :not(), or :has()) 
+            to effectively minimize stylesheet codebase repetitions.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Modern functional pseudo-classes are used correctly, but only in isolated, basic selector paths.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Minor formatting errors within functional selectors, or style rules revert to primitive cascading selector sequences.
+          </td>
+          <td>
+            <strong>1-0 marks:</strong> Completely ignores modern functional selectors. Relies exclusively on legacy repetitive multi-class paths.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>JS Validation &amp; State Management</strong><br /><em
+              >(5 marks)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Form submittals are intercepted flawlessly via listeners. 
+            Performs custom regex string checks (Name present, strict user@domain.com matching, 
+            @ GitHub handle format, and image type/size validation under 500KB) with instant in-place DOM errors. 
+            Local/Session storage transfers data perfectly.
+          </td>
+          <td>
+            <strong>4 pts:</strong> Validations fire successfully, but overlook niche file stream variations, 
+            display alert fallback modals instead of dynamic in-place DOM labels, or possess minor state data parsing inefficiencies.
+          </td>
+          <td>
+            <strong>3-2 pts:</strong> Validation logic is incomplete or easily bypassed. 
+            Regular expressions fail to parse fields securely, or data objects fail to pass between windows
+          </td>
+          <td>
+            <strong>11-0 pts:</strong> Client scripts crash at initialization. Interception listeners are absent, or validation 
+            falls back exclusively onto native HTML constraint validation attributes.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Dynamic Ticket Generation</strong><br /><em>(5 marks)</em>
+          </td>
+          <td>
+            <strong>5 marks:</strong> Fields parse properties smoothly on payload initialization. Renders file streams dynamically into 
+            active image profile elements. Script enforces secure routing boundary blocks: users attempting to view ticket.html directly 
+            without data are redirected back to index.html instantly.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Text data injects cleanly, but avatar image parsing is slightly glitchy or requires static local placeholders. 
+            Direct URL navigation redirection checks are missing or bypassed.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Script populates minor pieces of string data. The target view depends heavily on static text template 
+            fields or hardcoded placeholder items.
+          </td>
+          <td>
+            <strong>1-0 pts:</strong> Script files fail to update the DOM at runtime, or console errors completely prevent the dashboard and ticket asset layout from mounting.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Code Cleanliness &amp; Formatting</strong><br /><em
+              >(5 marks)</em
+            >
+          </td>
+          <td>
+            <strong>5 marks:</strong> Production-grade files with consistent,
+            uniform spacing rules, semantic attribute names, structured
+            organization, and descriptive logical comments.
+          </td>
+          <td>
+            <strong>4 marks:</strong> Codes behave cleanly, but exhibit minor
+            indent irregularities, tracking file clutter, or sparse comments
+            near complex functional blocks.
+          </td>
+          <td>
+            <strong>3-2 marks:</strong> Code base features chaotic formatting,
+            dead debugging lines, unreferenced variables, or cryptic tag naming
+            patterns.
+          </td>
+          <td>
+            <strong>1-0 pts:</strong> Disorganized blocks lacking structure or
+            containing un-refactored copy-paste code segments.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <center><h1>THE END</h1> </center>
+  </body>
+</html>
